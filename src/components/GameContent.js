@@ -46,9 +46,8 @@ export default function GameContent() {
       setTimeout(() => setFlip([]), 1000);
       setMatch([]);
       setFirstClick("");
+      setTimeout(() => setCanClick(true), 1000);
     }
-
-    setTimeout(() => setCanClick(true), 1000);
   }, [flip]);
 
   return (
@@ -57,15 +56,15 @@ export default function GameContent() {
         {array.map((value, index) => (
           <ImageWrapper
             onClick={
-              canClick && !correct.includes(value)
+              canClick && !correct.includes(value) && !flip.includes(index)
                 ? () => handleMatch(value, index)
                 : undefined
             }
             correct={correct}
             value={value}
             index={index}
-            key={index}
             flip={flip}
+            key={index}
           >
             <CardHolder>
               <CardBack />
@@ -115,6 +114,10 @@ const ImagesContainer = styled.div`
     grid-template-rows: repeat(4, 1fr);
     width: 0px;
   }
+
+  @media all and (max-width: 768px) {
+    gap: 6px;
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -123,8 +126,10 @@ const ImageWrapper = styled.div`
   height: 200px;
   width: 200px;
   border-radius: 10px;
-  cursor: ${({ correct, value }) =>
-    correct.includes(value) ? "default" : "pointer"};
+  cursor: ${({ correct, value, flip, index }) =>
+    correct.includes(value) || flip.includes(index) || flip.length === 2
+      ? "default"
+      : "pointer"};
   transform-style: preserve-3d;
   transition: 0.6s cubic-bezier(0.38, 0.02, 0.09, 1.66) all;
 
