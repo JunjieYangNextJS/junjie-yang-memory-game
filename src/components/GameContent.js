@@ -69,7 +69,7 @@ export default function GameContent() {
             <CardHolder>
               <CardBack />
               <CardFront value={value} correct={correct}>
-                <PokemonCard src={value} />
+                <PokemonCard src={value} alt="Pokemon" />
               </CardFront>
             </CardHolder>
           </ImageWrapper>
