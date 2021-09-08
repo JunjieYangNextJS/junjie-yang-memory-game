@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import "./App.css";
 import GameContent from "./components/GameContent";
 
 function App() {
@@ -19,5 +18,6 @@ const MemoryGame = styled.div`
   min-height: 100vh;
   height: auto;
   width: 100%;
-  background-color: #aee9eb;
+  /* background-color: #aee9eb; */
+  background: radial-gradient(#aee9eb, #68b4f2);
 `;

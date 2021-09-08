@@ -126,6 +126,7 @@ const ImageWrapper = styled.div`
   height: 200px;
   width: 200px;
   border-radius: 10px;
+  box-shadow: 0 0 10px 1px white;
   cursor: ${({ correct, value, flip, index }) =>
     correct.includes(value) || flip.includes(index) || flip.length === 2
       ? "default"
@@ -165,12 +166,12 @@ const CardBack = styled.div`
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  background: #85f28e;
-  border-radius: 10px;
+  background: #6af776;
+  border-radius: 5px;
 `;
 
 const PokemonCard = styled.img`
-  border-radius: 10px;
+  border-radius: 5px;
   height: 100%;
   width: 100;
 `;

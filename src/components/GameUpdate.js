@@ -34,7 +34,10 @@ export const GameUpdate = ({
   useEffect(() => {
     if (correct.length === 12 && correctRate > highestRecord) {
       setHighestRecord(correctRate);
-      setCongratsMessage(true);
+      setCongratsMessage("Congratulations! You just set a new record");
+    }
+    if (correct.length === 12 && correctRate <= highestRecord) {
+      setCongratsMessage("Unlucky! You will do better next time");
     }
   }, [correct]);
 
@@ -42,23 +45,23 @@ export const GameUpdate = ({
     <GameUpdateContainer>
       <GameUpdaters>
         <UpperDiv>
-          <TriesCountWrapper>
+          <AttemptsCountWrapper>
             <SiAiqfome />
             Attempts: {tries}
-          </TriesCountWrapper>
-          <CorrectCountWrapper>
+          </AttemptsCountWrapper>
+          <PairsCountWrapper>
             <SiApachespark />
             Pairs: {correctCount}
-          </CorrectCountWrapper>
-          <CorrectRateWrapper>
+          </PairsCountWrapper>
+          <SuccessRateWrapper>
             <SiAngellist />
             Success Rate: {tries === 0 ? "0.00" : correctRate}%
-          </CorrectRateWrapper>
+          </SuccessRateWrapper>
         </UpperDiv>
 
         <ButtomDiv>
           <CongratsMessageWrapper congratsMessage={congratsMessage}>
-            Congratulations! You just set a new record !
+            {congratsMessage}!
           </CongratsMessageWrapper>
 
           <HighestRecordWrapper>
@@ -96,17 +99,17 @@ const GameUpdaters = styled.div`
 
 const UpperDiv = styled.div``;
 
-const TriesCountWrapper = styled.div`
+const AttemptsCountWrapper = styled.div`
   display: flex;
   gap: 10px;
 `;
 
-const CorrectCountWrapper = styled.div`
+const PairsCountWrapper = styled.div`
   display: flex;
   gap: 10px;
 `;
 
-const CorrectRateWrapper = styled.div`
+const SuccessRateWrapper = styled.div`
   display: flex;
   gap: 10px;
 `;
