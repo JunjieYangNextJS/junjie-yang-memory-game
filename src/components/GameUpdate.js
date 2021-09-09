@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { SiAiqfome } from "react-icons/si";
 import { SiApachespark } from "react-icons/si";
@@ -27,19 +27,20 @@ export const GameUpdate = ({
 
   const correctRate = ((correctCount * 100) / tries).toFixed(2);
 
-  const [highestRecord, setHighestRecord] = useState(0);
-
   const [congratsMessage, setCongratsMessage] = useState(false);
 
+  const tempStats = useRef(0);
+
   useEffect(() => {
-    if (correct.length === 12 && correctRate > highestRecord) {
-      setHighestRecord(correctRate);
-      setCongratsMessage("Congratulations! You just set a new record");
+    if (correct.length === 12) {
+      if (correctRate > tempStats.current) {
+        tempStats.current = correctRate;
+        setCongratsMessage("Congratulations! You just set a new record");
+      } else {
+        setCongratsMessage("Unlucky! You will do better next time");
+      }
     }
-    if (correct.length === 12 && correctRate <= highestRecord) {
-      setCongratsMessage("Unlucky! You will do better next time");
-    }
-  }, [correct]);
+  }, [correct, correctRate]);
 
   return (
     <GameUpdateContainer>
@@ -65,7 +66,7 @@ export const GameUpdate = ({
           </CongratsMessageWrapper>
 
           <HighestRecordWrapper>
-            Your highest Success Rate is now {highestRecord}% !
+            Your highest Success Rate is now {tempStats.current}% !
           </HighestRecordWrapper>
         </ButtomDiv>
       </GameUpdaters>

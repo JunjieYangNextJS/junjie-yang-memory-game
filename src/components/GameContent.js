@@ -37,18 +37,18 @@ export default function GameContent() {
   };
 
   useEffect(() => {
-    if (flip.length < 2) return;
+    if (match.length < 2) return;
     if (match[0] === match[1] && flip[0] !== flip[1]) {
       setCorrect((correctArray) => [...correctArray, match[0], match[1]]);
     }
 
-    if (flip.length === 2) {
+    if (match.length === 2) {
       setTimeout(() => setFlip([]), 1000);
       setMatch([]);
       setFirstClick("");
       setTimeout(() => setCanClick(true), 1000);
     }
-  }, [flip]);
+  }, [flip, match]);
 
   return (
     <GameContentContainer>
