@@ -29,12 +29,12 @@ export const GameUpdate = ({
 
   const [congratsMessage, setCongratsMessage] = useState(false);
 
-  const tempStats = useRef(0);
+  const highestRecord = useRef(0);
 
   useEffect(() => {
     if (correct.length === 12) {
-      if (correctRate > tempStats.current) {
-        tempStats.current = correctRate;
+      if (correctRate > highestRecord.current) {
+        highestRecord.current = correctRate;
         setCongratsMessage("Congratulations! You just set a new record");
       } else {
         setCongratsMessage("Unlucky! You will do better next time");
@@ -66,7 +66,7 @@ export const GameUpdate = ({
           </CongratsMessageWrapper>
 
           <HighestRecordWrapper>
-            Your highest Success Rate is now {tempStats.current}% !
+            Your highest Success Rate is now {highestRecord.current}% !
           </HighestRecordWrapper>
         </ButtomDiv>
       </GameUpdaters>
