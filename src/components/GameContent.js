@@ -11,8 +11,6 @@ import { GameUpdate } from "./GameUpdate";
 export default function GameContent() {
   const [array, setArray] = useState([a, d, f, b, e, c, a, d, b, f, e, c]);
 
-  const [firstClick, setFirstClick] = useState("");
-
   const [match, setMatch] = useState([]);
 
   const [flip, setFlip] = useState([]);
@@ -24,13 +22,9 @@ export default function GameContent() {
   const [tries, setTries] = useState(0);
 
   const handleMatch = (value, index) => {
-    if (!firstClick) {
-      setFirstClick(value);
-      setFlip((flipArray) => [...flipArray, index]);
-      setMatch((matchArray) => [...matchArray, value]);
-    } else {
-      setFlip((flipArray) => [...flipArray, index]);
-      setMatch((matchArray) => [...matchArray, value]);
+    setFlip((flipArray) => [...flipArray, index]);
+    setMatch((matchArray) => [...matchArray, value]);
+    if (flip.length === 1) {
       setCanClick(false);
       setTries(tries + 1);
     }
@@ -45,7 +39,6 @@ export default function GameContent() {
     if (match.length === 2) {
       setTimeout(() => setFlip([]), 1000);
       setMatch([]);
-      setFirstClick("");
       setTimeout(() => setCanClick(true), 1000);
     }
   }, [flip, match]);
@@ -83,7 +76,6 @@ export default function GameContent() {
         setTries={setTries}
         tries={tries}
         setFlip={setFlip}
-        setFirstClick={setFirstClick}
       />
     </GameContentContainer>
   );

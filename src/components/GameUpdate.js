@@ -12,12 +12,10 @@ export const GameUpdate = ({
   setTries,
   tries,
   setFlip,
-  setFirstClick,
 }) => {
   const handlePlayAgain = () => {
     setCorrect([]);
     setFlip([]);
-    setFirstClick("");
     setTries(0);
     setCongratsMessage(false);
     setArray(array.sort(() => Math.random() - 0.5));
