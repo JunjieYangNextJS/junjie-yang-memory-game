@@ -61,7 +61,7 @@ export default function GameContent() {
           >
             <CardHolder>
               <CardBack value={value} correct={correct} />
-              <CardFront>
+              <CardFront value={value} correct={correct}>
                 <PokemonCard src={value} alt="Pokemon" />
               </CardFront>
             </CardHolder>
@@ -150,6 +150,7 @@ const CardBack = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   background: #6af776;
   border-radius: 5px;
@@ -163,6 +164,16 @@ const CardFront = styled.div`
   height: 100%;
   border-radius: 10px;
   transform: rotateY(180deg);
+  ${({ correct, value }) =>
+    correct.includes(value)
+      ? css`
+          -webkit-backface-visibility: default;
+          backface-visibility: default;
+        `
+      : css`
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+        `};
 `;
 
 const PokemonCard = styled.img`
