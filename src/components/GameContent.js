@@ -133,8 +133,8 @@ const ImageWrapper = styled.div`
     `};
 
   @media all and (max-width: 768px) {
-    height: 100px;
-    width: 100px;
+    height: 70px;
+    width: 70px;
   }
 `;
 
