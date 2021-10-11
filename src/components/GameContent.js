@@ -108,7 +108,7 @@ const ImagesContainer = styled.div`
   }
 
   @media all and (max-width: 768px) {
-    gap: 6px;
+    gap: 15px;
   }
 `;
 
